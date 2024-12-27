@@ -1,0 +1,3 @@
+ - Text Editor (char[128]) // Must be zeroed
+ - Directory size (uint16_t)
+ - Directory (var size char[])
