@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<string.h>
 
-// Command Implementations
+// Command Implementation Declarations
 void help(char **args);
 
-// Flag Setters
+// Flag Setter Declarations
 void flagUse(char **args);
 
 struct Command {
@@ -44,6 +44,10 @@ struct Flag FLAGS[] = {
 	}
 };
 
+/////////////
+// OPTIONS //
+/////////////
+
 struct Options {
 	char *zettels_dir;
 };
@@ -51,6 +55,10 @@ struct Options {
 struct Options options = {
 	.zettels_dir = ""
 };
+
+/////////////////////////////
+// COMMAND IMPLEMENTATIONS //
+/////////////////////////////
 
 void help(char **args) {
 	printf("Usage: ztk <COMMAND> [OPTIONS]\n\n");
@@ -64,6 +72,9 @@ void help(char **args) {
 	}
 }
 
+//////////////////
+// FLAG SETTERS //
+//////////////////
 
 void flagUse(char **args) {
 	options.zettels_dir = args[1];
