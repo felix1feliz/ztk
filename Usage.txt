@@ -1,12 +1,12 @@
 Usage: ztk <COMMAND> [OPTIONS]
 
 Commands:
- help [COMMAND]  | Prints usage instructions for certain command
- create <TITLE>  | Creates new zettelkasten
- list            | Lists zettels in current location
+ help            | Prints usage instructions
+ create <TITLE>  | Creates new zettel
+ list            | Lists zettels
  edit <ID>       | Opens zettel in text editor
  search          | Opens search for zettels
  use <DIRECTORY> | Use directory as zettels' location
 
 Options:
- -u --use <DIRECTORY> | Use directory instead of default location
+ -u --use <DIRECTORY> | Use specified directory instead of default location
