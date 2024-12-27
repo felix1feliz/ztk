@@ -80,6 +80,10 @@ void flagUse(char **args) {
 	options.zettels_dir = args[1];
 }
 
+//////////
+// MAIN //
+//////////
+
 int main(int argc, char **argv) {
 	// Command Commands Index
 	size_t cindex = -1;
