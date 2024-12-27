@@ -1,49 +1,6 @@
 #include<stdio.h>
 #include<string.h>
 
-// Command Implementation Declarations
-void help(char **args);
-
-// Flag Setter Declarations
-void flagUse(char **args);
-
-struct Command {
-	char *name;
-	char *description;
-	size_t argc;
-	void (*implementation)(char **args);
-};
-
-const struct Command COMMANDS[] = {
-	{
-		.name = "help",
-		.description = "help | Prints usage instructions",
-		.argc = 0,
-		.implementation = &help,
-	}
-};
-
-struct Flag {
-	// Little Name
-	char *lname;
-	// Big Name
-	char * bname;
-	char *description;
-	size_t argc;
-	void (*setter)(char **args);
-	int used;
-};
-
-struct Flag FLAGS[] = {
-	{
-		.lname = "-u",
-		.bname = "--use",
-		.description = "-u --use <DIRECTORY> | Use specified directory instead of default location",
-		.argc = 1,
-		.setter = &flagUse
-	}
-};
-
 /////////////
 // OPTIONS //
 /////////////
@@ -56,9 +13,64 @@ struct Options options = {
 	.zettels_dir = ""
 };
 
-/////////////////////////////
-// COMMAND IMPLEMENTATIONS //
-/////////////////////////////
+///////////
+// FLAGS //
+///////////
+
+// Flag Setter Declarations
+void flagUse(char **args);
+
+struct Flag {
+	// Little Name
+	char *lname;
+	// Big Name
+	char * bname;
+	char *description;
+	size_t argc;
+	void (*setter)(char **args);
+	int used;
+};
+
+// Flags List
+struct Flag FLAGS[] = {
+	{
+		.lname = "-u",
+		.bname = "--use",
+		.description = "-u --use <DIRECTORY> | Use specified directory instead of default location",
+		.argc = 1,
+		.setter = &flagUse
+	}
+};
+
+void flagUse(char **args) {
+	options.zettels_dir = args[1];
+}
+
+//////////////
+// COMMANDS //
+//////////////
+
+// Command Implementation Declarations
+void help(char **args);
+
+struct Command {
+	char *name;
+	char *description;
+	size_t argc;
+	void (*implementation)(char **args);
+};
+
+// Command List
+const struct Command COMMANDS[] = {
+	{
+		.name = "help",
+		.description = "help | Prints usage instructions",
+		.argc = 0,
+		.implementation = &help,
+	}
+};
+
+// Command Implementations
 
 void help(char **args) {
 	printf("Usage: ztk <COMMAND> [OPTIONS]\n\n");
@@ -70,14 +82,6 @@ void help(char **args) {
 	for(size_t i = 0; i < sizeof(FLAGS) / sizeof(FLAGS[0]); ++i) {
 		printf(" %s\n", FLAGS[i].description);
 	}
-}
-
-//////////////////
-// FLAG SETTERS //
-//////////////////
-
-void flagUse(char **args) {
-	options.zettels_dir = args[1];
 }
 
 //////////
