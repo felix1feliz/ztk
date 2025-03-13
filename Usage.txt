@@ -6,7 +6,7 @@ Commands:
  list            | Lists zettels
  edit <ID>       | Opens zettel in text editor
  search          | Opens search for zettels
- use <DIRECTORY> | Use directory as zettels' location
+ use <DIRECTORY> | Sets directory as zettels' location
 
 Options:
  -u --use <DIRECTORY> | Use specified directory instead of default location
